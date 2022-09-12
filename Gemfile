@@ -72,4 +72,5 @@ group :test do
 end
 
 gem "bootstrap"
+gem 'jquery-rails'
 gem"dotenv-rails"
