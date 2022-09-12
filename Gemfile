@@ -73,4 +73,5 @@ end
 
 gem "bootstrap"
 gem 'jquery-rails'
-gem"dotenv-rails"
+gem "dotenv-rails"
+gem 'devise'
