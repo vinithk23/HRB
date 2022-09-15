@@ -1,4 +1,5 @@
 class Room < ApplicationRecord
-    belongs_to :categories
-    has_many :bookings
+    belongs_to :category
+    has_many :booking
+    enum :state, [:Available, :Booked, :Blocked]
 end

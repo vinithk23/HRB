@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_093805) do
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.bigint "users_id"
-    t.bigint "rooms_id"
+    t.bigint "user_id"
+    t.bigint "room_id"
     t.date "in_date", null: false
     t.date "out_date", null: false
     t.integer "adult_count", default: 0, null: false
@@ -26,8 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_093805) do
     t.integer "total_cost", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["rooms_id"], name: "index_bookings_on_rooms_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
+    t.index ["room_id"], name: "index_bookings_on_room_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -54,11 +54,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_093805) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "room_no", null: false
-    t.bigint "categories_id"
+    t.bigint "category_id"
     t.string "status", default: "Available", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["categories_id"], name: "index_rooms_on_categories_id"
+    t.index ["category_id"], name: "index_rooms_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_093805) do
     t.string "email", default: "", null: false
     t.bigint "phone", null: false
     t.string "encrypted_password", default: "", null: false
-    t.bigint "roles_id"
+    t.bigint "role_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -74,7 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_093805) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["roles_id"], name: "index_users_on_roles_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
 end

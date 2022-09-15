@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.bigint :phone,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
-      t.belongs_to :roles
+      t.belongs_to :role
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
