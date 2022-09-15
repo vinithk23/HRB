@@ -10,19 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_12_100216) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_093805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "users_id"
+    t.bigint "rooms_id"
+    t.date "in_date", null: false
+    t.date "out_date", null: false
+    t.integer "adult_count", default: 0, null: false
+    t.integer "child_count", default: 0, null: false
+    t.integer "adult_cost", default: 0, null: false
+    t.integer "child_cost", default: 0, null: false
+    t.integer "total_cost", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["rooms_id"], name: "index_bookings_on_rooms_id"
+    t.index ["users_id"], name: "index_bookings_on_users_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "feature_ids", default: [], array: true
+    t.integer "user_cost", default: 0, null: false
+    t.integer "guest_cost", default: 0, null: false
+    t.integer "child_cost", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "room_no", null: false
+    t.bigint "categories_id"
+    t.string "status", default: "Available", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categories_id"], name: "index_rooms_on_categories_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
+    t.bigint "phone", null: false
     t.string "encrypted_password", default: "", null: false
     t.bigint "roles_id"
     t.string "reset_password_token"
