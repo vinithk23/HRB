@@ -12,8 +12,9 @@
   </head>
 
   <body>
-
-   <!-- <%= render 'layouts/header' %> -->
+<% unless controller.controller_name == 'home' %>
+<%= render 'layouts/header' %>
+<% end %>
     <%= render 'layouts/alert' %>
     
     <%= yield %>
