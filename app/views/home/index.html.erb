@@ -61,14 +61,14 @@
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkin_date" class="form-control">
+                    <input type="date" id="checkin_date" class="form-control" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkout_date" class="form-control">
+                    <input type="date" id="checkout_date" class="form-control" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
@@ -126,7 +126,15 @@
           <div class="col-md-12 col-lg-4 order-lg-1">
             <h2 class="heading">Welcome!</h2>
             <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white py-2 mr-3">Log In</a> <span class="mr-3 font-family-serif"></p>
+            <p>
+            <% if current_user %>
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-success text-white py-2 mr-3' %>
+            <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger text-white py-2 mr-3'  %>
+            <% else %>
+            <%= link_to 'sign up', new_user_registration_path, class: 'btn btn-secondary text-white py-2 mr-3' %>
+            <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary text-white py-2 mr-3' %>
+            <% end %>
+             </p>
           </div>
           
         </div>

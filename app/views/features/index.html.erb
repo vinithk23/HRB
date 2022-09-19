@@ -1,14 +1,37 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Features</h1>
+<%= link_to "New feature", new_feature_path, class: 'btn btn-md btn-primary align-right' %>
 
-<div id="features">
+
+<!-- <div id="features">
   <% @features.each do |feature| %>
     <%= render feature %>
     <p>
       <%= link_to "Show this feature", feature %>
     </p>
   <% end %>
-</div>
+</div> -->
 
-<%= link_to "New feature", new_feature_path %>
+<div class="table-responsive">
+  <table class="table table-striped" id="featureTable">
+    <thead>
+      <tr>
+        <th scope="col">s.no</th>
+        <th scope="col">Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rowCol = 1 %>
+      <% @features.each_with_index do |feature, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <% rowCol+1 %>
+        <td><%= feature.name %></td>
+        <td class="d-flex"><%= link_to "Show", feature, class: 'btn btn-success' %>&nbsp;<%= link_to "Edit", edit_feature_path(feature), class: 'btn btn-warning' %>&nbsp;<%= button_to "Destroy", feature, method: :delete, class: 'btn btn-danger' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
