@@ -5,7 +5,15 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   } 
   resources :features
-  get 'category', to: 'category#index'
+  resources :categories
+  # get 'category', to: 'category#index'
+  # get 'category/new', to: 'category#new'
+  # post 'category', to: 'category#create', as: 'categories'
+  # get 'category/:id/edit', to: 'category#edit', as: 'edit_category'
+  # get 'category/:id', to: 'category#show', as: 'show_category'
+  # put 'category/:id', to: 'category#update'
+  # patch 'category/:id', to: 'category#update'
+  # delete 'category/:id', to: 'category#destroy'
   # get 'category' as 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

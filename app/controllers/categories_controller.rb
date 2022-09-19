@@ -1,4 +1,4 @@
-class CategoryController < ApplicationController
+class CategoriesController < ApplicationController
     before_action :set_category, only: %i[ show edit update destroy ]
 
     # GET /category or /category.json
@@ -21,8 +21,7 @@ class CategoryController < ApplicationController
   
     # POST /category or /category.json
     def create
-      @category = Cegory.new(category_params)
-  
+      @category = Category.new(category_params)
       respond_to do |format|
         if @category.save
           format.html { redirect_to category_url(@category), notice: "Category was successfully created." }
@@ -37,6 +36,7 @@ class CategoryController < ApplicationController
     # PATCH/PUT /category/1 or /category/1.json
     def update
       respond_to do |format|
+
         if @category.update(category_params)
           format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
           format.json { render :show, status: :ok, location: @category }
@@ -52,7 +52,7 @@ class CategoryController < ApplicationController
       @category.destroy
   
       respond_to do |format|
-        format.html { redirect_to category_url, notice: "Category was successfully destroyed." }
+        format.html { redirect_to categories_path, notice: "Category was successfully destroyed." }
         format.json { head :no_content }
       end
     end
@@ -65,7 +65,7 @@ class CategoryController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def category_params
-        params.require(:category).permit(:name)
+        params.require(:category).permit(:name, :user_cost, :guest_cost, :child_cost, :feature_ids => [])
       end
 
 end

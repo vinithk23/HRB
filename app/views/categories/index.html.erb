@@ -1,0 +1,29 @@
+<h1>Category</h1>
+<%= link_to "New category", new_category_path, class: 'btn btn-md btn-primary align-right' %>
+
+<% if @category.count > 0 %>
+<div class="table-responsive">
+  <table class="table table-striped" id="categoryTable">
+    <thead>
+      <tr>
+        <th scope="col">s.no</th>
+        <th scope="col">Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rowCol = 1 %>
+      <% @category.each_with_index do |category, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <% rowCol+1 %>
+        <td><%= category.name %></td>
+        <td class="d-flex"><%= link_to "Show", category_path(category), class: 'btn btn-success' %>&nbsp;<%= link_to "Edit", edit_category_path(category), class: 'btn btn-warning' %>&nbsp;<%= button_to "Destroy", category, method: :delete, class: 'btn btn-danger' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+<h3>No Data Found</h3>
+<% end %>

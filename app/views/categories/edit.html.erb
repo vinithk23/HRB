@@ -1,0 +1,10 @@
+<h1>Editing category</h1>
+
+<%= render "form", category: @category %>
+
+<br>
+
+<div class="mb-3">
+  <%= link_to "Show this category", @category, class: 'btn btn-success' %> |
+  <%= link_to "Back to category", categories_path, class: 'btn btn-secondary' %>
+</div>

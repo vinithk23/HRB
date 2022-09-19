@@ -1,0 +1,31 @@
+<div id="<%= dom_id category %>">
+<h1>Category</h1>
+  <p>
+    <strong>Name:</strong>
+    <%= category.name %>
+  </p>
+ 
+  <p>
+    <strong>Features:</strong>
+    <% features = Feature.where(id: category.feature_ids)  %>
+    <% features.each do |feature| %>
+    <%= feature.name + ',' %>
+    <% end %>
+  </p>
+ 
+  <p>
+    <strong>User Cost:</strong>
+    <%= category.user_cost %>
+  </p>
+ 
+  <p>
+    <strong>Guest Cost:</strong>
+    <%= category.guest_cost %>
+  </p>
+ 
+  <p>
+    <strong>Child Cost:</strong>
+    <%= category.child_cost %>
+  </p>
+
+</div>
