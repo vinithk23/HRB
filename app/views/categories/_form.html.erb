@@ -1,7 +1,7 @@
 <%= form_with(model: @category) do |form| %>
   <% if @category.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this @category from being saved:</h2>
+      <!-- <h2><%= pluralize(@category.errors.count, "error") %> prohibited this @category from being saved:</h2> -->
 
       <ul>
         <% @category.errors.each do |error| %>
@@ -25,7 +25,7 @@
       <%= form.label :feature_ids, style: "display: block", class: 'my-3' %>
     </div>
     <div class="col-md-10">
-        <%= form.select :feature_ids, options_for_select(Feature.select('id','name').collect { |a| ["#{a.name}", a.id] }, :selected => form.object.feature_ids), {}, {multiple: 'true', required: 'true', autofocus: 'true', class: 'form-select w-50', id: 'dropdown'} %>
+        <%= form.select :feature_ids, options_for_select(Feature.select('id','name').collect { |a| ["#{a.name}", a.id] }, :selected => form.object.feature_ids), {}, {multiple: 'true', required: 'true', autofocus: 'true', class: 'form-select select2 w-50'} %>
     </div>
   </div>
 
@@ -56,12 +56,16 @@
     </div>
   </div>
 
+  <div class="row col-md-12">
+    <div class="col-md-2">
+      <%= form.label :image, style: "display: block", class: 'my-3' %>
+    </div>
+    <div class="col-md-10">
+      <%= form.file_field :image, class: 'form-control w-50' %>
+    </div>
+  </div>
+
   <div>
     <%= form.submit 'Submit', class: 'btn btn-primary my-2' %>
   </div>
 <% end %>
-
-
-<script>
-$("#dropdown").select2();
-</script>

@@ -1,0 +1,23 @@
+<div id="<%= dom_id room %>">
+<h1>Room</h1>
+  <p>
+    <strong>Room No:</strong>
+    <%= room.room_no %>
+  </p>
+ 
+  <p>
+    <strong>Category:</strong>
+    <%= (room.category ? room.category.name : '-') %>
+  </p>
+ 
+  <p>
+    <strong>Status:</strong>
+    <%= room.status %>
+  </p>
+ 
+  <div>
+    <header><strong>Image:</strong></header>
+    <%= image_tag (room.category ? ((room.category.image.present?) ? room.category.image : '') : ''), size: "300x200", class: 'my-2' %>
+  </div>
+
+</div>

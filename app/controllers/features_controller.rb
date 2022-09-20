@@ -1,4 +1,5 @@
 class FeaturesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_feature, only: %i[ show edit update destroy ]
 
   # GET /features or /features.json

@@ -1,0 +1,33 @@
+<h1>Room</h1>
+<%= link_to "New room", new_room_path, class: 'btn btn-md btn-primary align-right' %>
+
+<% if @room.count > 0 %>
+<div class="table-responsive">
+  <table class="table table-striped" id="roomTable">
+    <thead>
+      <tr>
+        <th scope="col">S.no</th>
+        <th scope="col">Room No</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rowCol = 1 %>
+      <% @room.each_with_index do |room, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <% rowCol+1 %>
+        <td><%= room.room_no %></td>
+        <td><%= (room.category ? room.category.name : '-') %></td>
+        <td><%= room.status %></td>
+        <td class="d-flex"><%= link_to "Show", room_path(room), class: 'btn btn-success' %>&nbsp;<%= link_to "Edit", edit_room_path(room), class: 'btn btn-warning' %>&nbsp;<%= button_to "Destroy", room, method: :delete, class: 'btn btn-danger' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+<h3>No Data Found</h3>
+<% end %>

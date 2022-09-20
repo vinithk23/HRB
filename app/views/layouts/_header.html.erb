@@ -8,13 +8,21 @@
   <li class="nav-item">
   <a class="nav-link" href="/">Home</a>
   </li>
-    <li class="nav-item">
-  <a class="nav-link" href="/">About</a>
+  <li class="nav-item">
+  <a class="nav-link" href="/features">Features</a>
+  </li>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="/categories">Category</a>
+  </li>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="/rooms">Room</a>
   </li>
   <li class="nav-item"><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'border-0 py-2', style: 'color: #707071; background-color: #f8f9fa;' %></li>    
   <% else %>
   <li class="nav-item">
-  <%= link_to 'sign up', new_user_registration_path, class: 'nav-link' %>
+  <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
   </li>
   <li class="nav-item">
   <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>

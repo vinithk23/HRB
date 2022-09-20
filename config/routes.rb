@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   } 
   resources :features
   resources :categories
+  resources :rooms
   # get 'category', to: 'category#index'
   # get 'category/new', to: 'category#new'
   # post 'category', to: 'category#create', as: 'categories'

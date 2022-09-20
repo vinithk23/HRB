@@ -28,4 +28,9 @@
     <%= category.child_cost %>
   </p>
 
+  <div>
+    <header><strong>Image:</strong></header>
+    <%= image_tag ((category.image.present?) ? category.image :  ""), size: "300x200", class: 'my-2' %>
+  </div>
+
 </div>
