@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :features
   resources :categories
   resources :rooms
-  # get 'category', to: 'category#index'
+  post 'fetch/available/room/categories', to: 'home#fetch_available_room_categories', as: 'fetch_available_room_categories'
   # get 'category/new', to: 'category#new'
   # post 'category', to: 'category#create', as: 'categories'
   # get 'category/:id/edit', to: 'category#edit', as: 'edit_category'

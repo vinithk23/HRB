@@ -6,6 +6,11 @@
   </p>
  
   <p>
+    <strong>Content:</strong>
+    <%= category.content ? category.content : '-' %>
+  </p>
+ 
+  <p>
     <strong>Features:</strong>
     <% features = Feature.where(id: category.feature_ids)  %>
     <% features.each do |feature| %>
