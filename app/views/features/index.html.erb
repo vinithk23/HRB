@@ -11,6 +11,7 @@
   <% end %>
 </div> -->
 
+<% if @features.count > 0 %>
 <div class="table-responsive">
   <table class="table table-striped" id="featureTable">
     <thead>
@@ -33,3 +34,6 @@
     </tbody>
   </table>
 </div>
+<% else %>
+<h3 class="mt-2">No Data Found</h3>
+<% end %>
