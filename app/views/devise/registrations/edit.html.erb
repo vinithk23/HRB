@@ -51,7 +51,8 @@
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %> -->
+<%= link_to "Back", :back %> 
+-->
 
 
 <div class="box-form my-4">
@@ -111,10 +112,14 @@
   <%= f.submit "Update", class: 'mt-3' %>      
 	</div>
 	<% end %>
+
+  <% unless resource.email == 'admin@gmail.com' %>
+ 
   <h3 class="mt-2">Cancel my account</h3>
 
-<p class="">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'cancelAccount' %></p>
+  <p class="">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'cancelAccount' %></p>
 
+  <% end %>
 <!-- <%= link_to "Back", :back %> -->
 </div>
 </div>
