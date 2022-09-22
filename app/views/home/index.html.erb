@@ -40,7 +40,7 @@
         </div>
       </div>
       
-      <a class="mouse smoothscroll" href="#next">
+      <a class="mouse smoothscroll" href="#book">
         <div class="mouse-icon">
           <span class="mouse-wheel"></span>
         </div>
@@ -52,24 +52,24 @@
     <section class="section bg-light pb-0" style="margin-top:-6%"; >
       <div class="container">
        
-        <div class="row check-availabilty" id="next">
+        <div class="row check-availabilty" id="book">
           <div class="block-32">
 
-            <form action="#">
-            <%= form_with scope: :any, path: fetch_available_room_categories_path do |form| %>
+            <%= form_with url: available_rooms_path(format: :html), method: :post do |form| %>
+          
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <%= form.date_field :checkin_date, class: 'form-control', :required => true, min: Date.today %>
+                    <%= form.date_field :checkin_date, class: 'form-control', :required => true, min: Date.today, value: ($checkin_date != "") ? $checkin_date : Date.today %>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <%= form.date_field :checkout_date, class: 'form-control', :required => true, min: Date.today  %>
+                    <%= form.date_field :checkout_date, class: 'form-control', :required => true, min: Date.today, value: ($checkout_date != "") ? $checkout_date : Date.today  %>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
@@ -78,7 +78,7 @@
                       <label for="adults" class="font-weight-bold text-black">Adults</label>
                       <div class="field-icon-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-        <%= form.select :adult_count, options_for_select([1,2,3,4], :selected => 1), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'adult_count'} %>
+        <%= form.select :adult_count, options_for_select([1,2,3,4], :selected => ($adult_count != 0) ? $adult_count : 1), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'adult_count'} %>
 <%# 
                         <select name="adult_count" id="adults" class="form-control">
                           <option value="">1</option>
@@ -92,7 +92,7 @@
                       <label for="children" class="font-weight-bold text-black">Children</label>
                       <div class="field-icon-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-        <%= form.select :children_count, options_for_select([0,1,2,3,4], :selected => 0), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'children_count'} %>
+        <%= form.select :child_count, options_for_select([0,1,2,3,4], :selected => $child_count != 0 ? $child_count : 0 ), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'children_count'} %>
 
                         <%# <select name="children_count" id="children" class="form-control">
                           <option value="">0</option>
@@ -116,8 +116,10 @@
         </div>
       </div>
     </section>
+    
+    <p>jsbcjksc</p><h1><%= @available_category_ids %></h1>
 
-    <%= render 'layouts/availableRooms' %>
+    <%= render 'layouts/availableRooms', :categories => @available_categories , :bookingButtonStatus => @booking_button_status %>
 
   <section class="py-5 bg-light">
       <div class="container">
