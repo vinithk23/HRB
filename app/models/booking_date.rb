@@ -1,0 +1,2 @@
+class BookingDate < ApplicationRecord
+end

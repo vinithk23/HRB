@@ -2,8 +2,8 @@ class Category < ApplicationRecord
     has_one_attached :image
     has_many :room
     validates :name, uniqueness: true
-    validates :content, presence: true, length: {minimum:200, maximum:400}
-    validates :user_cost, :guest_cost, :child_cost, presence: true, numericality: { only_integer: true, greater_than: 1, less_than: 10000 }
+    validates :content, presence: true, length: { minimum:200, maximum:400 }
+    validates :amount, presence: true, numericality: { only_integer: true, greater_than: 1, less_than: 10000 }
     # validates :feature_ids_is_array
 
     # validates :image, attached: false, format: {

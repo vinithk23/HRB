@@ -66,7 +66,7 @@ class CategoriesController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def category_params
-        params.require(:category).permit(:name, :content, :user_cost, :guest_cost, :child_cost, :image, feature_ids: [])
+        params.require(:category).permit(:name, :content, :amount, :image, feature_ids: [])
       end
 
 end

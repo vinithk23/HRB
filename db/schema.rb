@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_090828) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_23_082252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,18 +42,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_090828) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "booking_dates", force: :cascade do |t|
+    t.date "date", null: false
+    t.bigint "booking_id"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_booking_dates_on_booking_id"
+    t.index ["room_id"], name: "index_booking_dates_on_room_id"
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "room_id"
-    t.date "in_date", null: false
-    t.date "out_date", null: false
+    t.date "check_in", null: false
+    t.date "check_out", null: false
     t.integer "adult_count", default: 0, null: false
     t.integer "child_count", default: 0, null: false
-    t.integer "adult_cost", default: 0, null: false
-    t.integer "child_cost", default: 0, null: false
-    t.integer "total_cost", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "notes"
     t.index ["room_id"], name: "index_bookings_on_room_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -61,9 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_090828) do
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.text "feature_ids", default: [], array: true
-    t.integer "user_cost", default: 0, null: false
-    t.integer "guest_cost", default: 0, null: false
-    t.integer "child_cost", default: 0, null: false
+    t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"

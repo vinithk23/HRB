@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
   # before_action :set_room_details
+  $room_category = ""
   $checkin_date = ""
   $checkout_date = ""
   $adult_count = 0
   $child_count = 0
+  $reservation_days = 0
 
   def index
     $adult_count = 0
@@ -30,6 +32,16 @@ class HomeController < ApplicationController
   end
 
   def reservation
+    $room_category = params[:room_category]
+
+    unless($checkin_date == "" && $checkout_date == "")
+      $reservation_days = ((Date.parse($checkout_date) - Date.parse($checkin_date)).to_i) + 1
+      logger.info "$reservation_days"
+      logger.info $reservation_days
+      logger.info "$reservation_days"
+    end
+
+    @requestCategory = Category.find($room_category)
 
   end
 
@@ -37,9 +49,9 @@ class HomeController < ApplicationController
   def set_room_details 
     logger.info "set room details.."
     if $adult_count != 0
-    @available_category_ids = Room.where(status: 'Available').pluck('category_id').uniq
-    @available_categories = Category.where(id: @available_category_ids)
-    @booking_button_status = 1
+      @available_category_ids = Room.where(status: 'Available').pluck('category_id').uniq
+      @available_categories = Category.where(id: @available_category_ids)
+      @booking_button_status = 1
     else 
       @available_categories = Category.all
       @booking_button_status = 0

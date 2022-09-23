@@ -11,17 +11,17 @@
       <% categories.each_with_index do |category, index| %>
       <div class="featureDetailsParentDiv">
         <div class="site-block-half d-block d-lg-flex bg-white">
-        <% name = 'images/img_2.jpg' %>
           <a href="#" class="image d-block bg-image-2 <%= index.odd? ? 'order-2' : '' %>" style="background-image: url('<%= rails_blob_url(category.image) %>');"></a>
           <div class="text">
-            <span class="d-block mb-4"><span class="display-4 text-primary">₹<%= category.user_cost ? category.user_cost : 0 %></span> <span class="text-uppercase letter-spacing-2">/ per day</span> </span>
+            <span class="d-block mb-4"><span class="display-4 text-primary">₹<%= category.amount ? category.amount : 0 %></span> <span class="text-uppercase letter-spacing-2">/ per day</span> </span>
             <h2 class="mb-4"><%= category.name ? category.name : '' %></h2>
             <p><%= category.content ? category.content : '' %></p>
-            <p><a href="<%= (bookingButtonStatus == 0) ? '#book' : room_reservation_path  %>" class="btn btn-primary text-white">Book Now</a><a class="featureViewClick btn btn-secondary mx-3">Check Deatails</a></p>
+            <p><a href="<%= (bookingButtonStatus == 0) ? '#book' : room_reservation_path(category)  %>" class="btn btn-primary text-white">Book Now</a><a class="featureViewClick btn btn-secondary mx-3">Check Deatails</a></p>
           </div>
         </div>
-             <div class="bg-white featureDetails">
-         111111111111111 kjdcbjdcb <br> 
+
+        <div class="bg-white featureDetails">
+          111111111111111 kjdcbjdcb <br> 
           111111111111111 kjdcbjdcb <br>
           111111111111111 kjdcbjdcb <br>
           111111111111111 kjdcbjdcb <br>

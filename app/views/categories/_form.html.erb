@@ -40,28 +40,10 @@
 
   <div class="row col-md-12">
     <div class="col-md-2">
-      <%= form.label :user_cost, style: "display: block", class: 'my-3' %>
+      <%= form.label :amount, style: "display: block", class: 'my-3' %>
     </div>
     <div class="col-md-10">
-      <%= form.number_field :user_cost, in: 1..10000, class: 'form-control w-50' %>
-    </div>
-  </div>
-
-  <div class="row col-md-12">
-    <div class="col-md-2">
-          <%= form.label :guest_cost, style: "display: block", class: 'my-3' %>
-    </div>
-    <div class="col-md-10">
-      <%= form.number_field :guest_cost, in: 1..10000, class: 'form-control w-50' %>
-    </div>
-  </div>
-
-  <div class="row col-md-12">
-    <div class="col-md-2">
-      <%= form.label :child_cost, style: "display: block", class: 'my-3' %>
-    </div>
-    <div class="col-md-10">
-      <%= form.number_field :child_cost, in: 1..10000, class: 'form-control w-50' %>
+      <%= form.number_field :amount, in: 1..10000, class: 'form-control w-50' %>
     </div>
   </div>
 
