@@ -25,8 +25,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7">
-                    <%= form.hidden_field :room_category, class: 'form-control', value: $room_category, readonly: 'true' %>
-                  
+                    <%= form.hidden_field :per_day_amount, class: 'form-control', value: @requestCategory.amount, readonly: 'true' %>
+                    <%= form.hidden_field :amount, class: 'form-control', value: (@requestCategory.amount * $reservation_days), readonly: 'true' %>
+                
               <div class="row">
                 <div class="col-md-6 form-group">
                     <label style="display: block;" class="text-black font-weight-bold">Name :</label>
@@ -79,13 +80,6 @@
                   <%= form.text_area :notes, size: "30x5", class: 'form-control' %>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6 form-group">
-                
-                </div>
-              </div>
-           
-
           </div>
           <div class="col-md-5">
             <div class="row">

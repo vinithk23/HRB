@@ -7,6 +7,8 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.date :check_out, null: false
       t.integer :adult_count, null: false, default: 0
       t.integer :child_count, null: false, default: 0
+      t.integer :per_day_amount, null: false, default: 0
+      t.integer :amount, null: false, default: 0
 
       t.timestamps
     end

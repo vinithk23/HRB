@@ -59,6 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_082252) do
     t.date "check_out", null: false
     t.integer "adult_count", default: 0, null: false
     t.integer "child_count", default: 0, null: false
+    t.integer "per_day_amount", default: 0, null: false
+    t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "notes"
@@ -72,7 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_082252) do
     t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "content"
+    t.text "content", null: false
   end
 
   create_table "features", force: :cascade do |t|

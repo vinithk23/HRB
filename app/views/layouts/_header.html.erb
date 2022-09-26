@@ -4,20 +4,23 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
   <div class="collapse navbar-collapse" id="navMenu">
   <ul class="navbar-nav ms-auto">
-  <% if current_user %>
+  <% if (current_user && current_user.role.name) == 'Admin'  %>
   <li class="nav-item">
-  <a class="nav-link" href="/">Home</a>
+  <%= link_to 'Dashboard', root_path, class: 'nav-link' %>
   </li>
   <li class="nav-item">
-  <a class="nav-link" href="/features">Features</a>
-  </li>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link" href="/categories">Category</a>
+  <%= link_to 'Features', features_path, class: 'nav-link'%>
   </li>
   </li>
   <li class="nav-item">
-  <a class="nav-link" href="/rooms">Room</a>
+  <%= link_to 'Category', categories_path, class: 'nav-link' %>
+  </li>
+  </li>
+  <li class="nav-item">
+  <%= link_to 'Room', rooms_path, class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+  <%= link_to 'Bookings', rooms_path, class: 'nav-link' %>
   </li>
   <li class="nav-item"><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'border-0 py-2', style: 'color: #707071; background-color: #f8f9fa;' %></li>    
   <% else %>

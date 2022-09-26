@@ -1,1 +1,114 @@
-<h1>Room no: 201</h1>
+<h1>Booking Confirmtion</h1>
+<section class="section contact-section py-2">
+<%= form_with do |form| %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                    <label style="display: block;" class="text-black font-weight-bold">Name :</label>
+                    <input type="text" class="form-control" value="<%= current_user.name %>" readonly>
+                    
+                </div>
+                <div class="col-md-6 form-group">
+                    <label style="display: block;" class="text-black font-weight-bold">Phone :</label>
+                    <input type="text" class="form-control" value="<%= current_user.phone %>" readonly>
+                </div>
+              </div>
+          
+              <div class="row mt-2">
+                <div class="col-md-12 form-group">
+                    <label style="display: block;" class="text-black font-weight-bold">Email :</label>
+                    <input type="text" class="form-control" value="<%= current_user.email %>" readonly>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-md-6 form-group">
+                    <%= form.label :check_in, style: "display: block", class: 'text-black font-weight-bold' %>
+                    <%= form.text_field :check_in, class: 'form-control', value: @booking.check_in, readonly: 'true' %>
+                </div>
+                <div class="col-md-6 form-group">
+                    <%= form.label :check_out, style: "display: block", class: 'text-black font-weight-bold' %>
+                    <%= form.text_field :check_out, class: 'form-control', value: @booking.check_out, readonly: 'true' %>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-md-6 form-group">
+                  <label for="adults" class="font-weight-bold text-black">Adults</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <%= form.text_field :adult_count, class: 'form-control', value: @booking.adult_count, readonly: 'true' %>
+                  </div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="children" class="font-weight-bold text-black">Children</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <%= form.text_field :child_count, class: 'form-control', value: @booking.child_count, readonly: 'true' %>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-2 mb-4">
+                <div class="col-md-12 form-group">
+                  <label class="text-black font-weight-bold" for="message">Notes</label>
+                  <%= form.text_area :notes, size: "30x2", class: 'form-control', value: @booking.notes, readonly: 'true' %>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+
+            <div class="card mt-4">
+              <div class="card-body">
+               <h5 class="card-title">Reservation Details</h5>
+              <hr class="my-0">
+                        <div class="d-flex justify-content-between mx-3 mx-md-4 div2">
+                            <div class="">
+                                <div class="d-flex"> <p class="grey mt-3">Reservation No :</p> </div>
+                            </div>
+                            <div class="align-self-center purple">
+                                <%= (@booking.created_at.year.to_s + '00000').to_i +  @booking.id %>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mx-3 mx-md-4 div2">
+                            <div class="">
+                                <div class="d-flex"> <p class="grey mt-3">Room Type :</p> </div>
+                            </div>
+                            <div class="align-self-center purple">
+                                <%= @booking.room.category.name %>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mx-3 mx-md-4 div2">
+                            <div class="">
+                                <div class="d-flex"> <p class="grey mt-3">Room No :</p></div>
+                            </div>
+                            <div class="align-self-center purple">
+                                <%= @booking.room.room_no %>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mx-3 mx-md-4 div2">
+                            <div class="">
+                                <div class="d-flex"> <p class="grey mt-3"><%= number_to_currency(@booking.per_day_amount, :unit => "₹ ") %></p><span class="mt-3 mx-2">x</span> <span class="border ml-2 p-1 mt-3" id="reservationDays"><%= $reservation_days %> days</span>  </div>
+                            </div>
+                            <div class="align-self-center purple">
+                                <%= number_to_currency((@booking.amount), :unit => "₹ ") %>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center mx-3 mx-md-4 mt-2 text-white"> 
+                            <div><%= link_to 'My Bookings', root_path, class: 'btn btn-primary text-white py-2 px-5 font-weight-bold'%> </div> 
+                        </div>
+                        
+                        <div class="d-flex justify-content-center mx-3 mx-md-4 mt-2 text-white"> 
+                            <div><%= link_to 'New Booking', root_path, class: 'btn btn-success text-white py-2 px-5 font-weight-bold'%> </div> 
+                        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    </section>

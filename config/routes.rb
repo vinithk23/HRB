@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'rooms/available', to: 'home#available_rooms', as: 'available_rooms'
   get 'reservation/:room_category', to: 'home#reservation', as: 'room_reservation'
   post 'booking/new', to: 'bookings#new', as: 'new_room_booking'
+  get 'booking/reservation_confirmation/:booking_id', to: 'bookings#reservation_confirmation', as: 'reservation_confirmation'
   # get 'category/new', to: 'category#new'
   # post 'category', to: 'category#create', as: 'categories'
   # get 'category/:id/edit', to: 'category#edit', as: 'edit_category'
