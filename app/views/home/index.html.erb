@@ -55,21 +55,21 @@
         <div class="row check-availabilty" id="book">
           <div class="block-32">
 
-            <%= form_with url: available_rooms_path(format: :html), method: :post do |form| %>
+            <%= form_with url: available_rooms_path(format: :html), method: :post, id: 'availabilityCheckForm' do |form| %>
           
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <%= form.date_field :checkin_date, class: 'form-control', :required => true, min: Date.today, value: ($checkin_date != "") ? $checkin_date : Date.today %>
+                    <%= form.date_field :checkin_date, class: 'form-control checkInDate', :required => true, min: Date.today, value: ($checkin_date != "") ? $checkin_date : Date.today %>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <%= form.date_field :checkout_date, class: 'form-control', :required => true, min: Date.today, value: ($checkout_date != "") ? $checkout_date : Date.today  %>
+                    <%= form.date_field :checkout_date, class: 'form-control checkOutDate', :required => true, min: Date.today, value: ($checkout_date != "") ? $checkout_date : Date.today  %>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
@@ -79,13 +79,6 @@
                       <div class="field-icon-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
         <%= form.select :adult_count, options_for_select([1,2,3,4], :selected => ($adult_count != 0) ? $adult_count : 1), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'adult_count'} %>
-<%# 
-                        <select name="adult_count" id="adults" class="form-control">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4</option>
-                        </select> %>
                       </div>
                     </div>
                     <div class="col-md-6 mb-3 mb-md-0">
@@ -93,20 +86,12 @@
                       <div class="field-icon-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
         <%= form.select :child_count, options_for_select([0,1,2,3,4], :selected => $child_count != 0 ? $child_count : 0 ), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'children_count'} %>
-
-                        <%# <select name="children_count" id="children" class="form-control">
-                          <option value="">0</option>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4</option>
-                        </select> %>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 align-self-end pb-1">
-                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                  <button type="button" class="btn btn-primary btn-block text-white" onclick="formSubmitCheck()">Check Availabilty</button>
                 </div>
               </div>
             <% end %>
@@ -145,16 +130,16 @@
       </div>
     </section>
 
+<script>
 
+  function formSubmitCheck(){
+            var diff = new Date(new Date($('.checkOutDate').val()) - new Date($('.checkInDate').val()));
+            var days = (diff/1000/60/60/24) + 1;
+            if(days !== 'NaN' && days > 0){
+                $('#availabilityCheckForm').submit();
+            } else {
+                alert("Kindly check the date before submit...")
+            }
+  }
 
-<%# <section class="bg-dark text-light p-5 text-center">
-    <div class="container">
-        <div class="d-flex">
-            <div class="col-8 text-center">
-               <h1>Looking for a <span class="text-warning">Best Hotel</span></h1>
-            </div>
-            <%# <img class="img-fluid w-50 d-none d-sm-block" src="../../lib/assets/images/hotel-dark.png" alt="" /> %>
-            <%# <%= image_tag "hotel-dark.png", class:"img-fluid d-none d-sm-block" %> 
-        <%# </div> %>
-    <%# </div> %>
-<%# </section>  %>
+</script>

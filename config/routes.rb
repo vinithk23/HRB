@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   resources :rooms
   post 'rooms/available', to: 'home#available_rooms', as: 'available_rooms'
   get 'reservation/:room_category', to: 'home#reservation', as: 'room_reservation'
-  post 'booking/new', to: 'bookings#new', as: 'new_room_booking'
   get 'booking/reservation_confirmation/:booking_id', to: 'bookings#reservation_confirmation', as: 'reservation_confirmation'
-  # get 'category/new', to: 'category#new'
+  get 'bookings', to: 'bookings#index'
+  get 'bookings/all', to: 'bookings#all'
+  post 'booking/new', to: 'bookings#new', as: 'new_room_booking'
+  get 'booking/:booking_id', to: 'bookings#show', as: 'show_booking'
+  get 'booking/:booking_id/cancellation', to: 'bookings#cancellation', as: 'cancel_booking'
+
   # post 'category', to: 'category#create', as: 'categories'
   # get 'category/:id/edit', to: 'category#edit', as: 'edit_category'
   # get 'category/:id', to: 'category#show', as: 'show_category'

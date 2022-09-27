@@ -1,5 +1,26 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_booking, only: %i[ show reservation_confirmation ]
+
+      # GET /booking or /booking.json
+      def index
+        @bookings = Booking.where(user_id: current_user.id)
+      end
+     
+      # GET /booking/all or /booking/all.json
+      def all
+        if (current_user.role.name != 'Admin')
+          redirect_back_or_to '/', allow_other_host: false, alert: "Your request can't be processed.."
+          return
+        end
+        @bookings = Booking.all
+        render 'index'
+      end
+
+    # GET /booking/1 or /booking/1.json
+    def show
+
+    end
 
     def new
         @selected_category = Category.find($room_category)
@@ -14,23 +35,18 @@ class BookingsController < ApplicationController
         @booking.save
      
         if @booking.persisted?
-          logger.info '--------- BookingDate Loop --------------'
-        # logger.info @booking.check_in
-        ($checkin_date..$checkout_date).each do |date|
-          logger.info date
-          BookingDate.create!(room_id: @booking.room_id, booking_id: @booking.id, date: date)
-        end
-        logger.info '-----------------------'
-          redirect_to reservation_confirmation_path(@booking)
+              ($checkin_date..$checkout_date).each do |date|
+                  BookingDate.create!(room_id: @booking.room_id, booking_id: @booking.id, date: date)
+              end
+            redirect_to reservation_confirmation_path(@booking)
           else
             redirect_back_or_to '/', allow_other_host: false, alert: "Your Reservation has not been processed, Kindly try again.."
         end
     end
 
-      
     def reservation_confirmation
 
-      @booking = Booking.find(params[:booking_id])
+      # @booking = Booking.find(params[:booking_id])
 
       if @booking.user_id == current_user.id
       render 'home/reservation_confirmation', notice: "Your Reservation have been Confirmed."
@@ -39,8 +55,17 @@ class BookingsController < ApplicationController
       end 
     end
 
+    def cancellation
+
+      logger.info 'Cancellation action'
+
+    end
 
     private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_booking
+      @booking = Booking.find(params[:booking_id])
+    end
 
     def booking_params
         params.permit( :user_id, :check_in, :check_out, :adult_count, :child_count, :per_day_amount, :amount, :notes)
