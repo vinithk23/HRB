@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: %i[ show reservation_confirmation ]
+  before_action :set_booking, only: %i[ show reservation_confirmation cancellation ]
 
       # GET /booking or /booking.json
       def index
@@ -46,19 +46,22 @@ class BookingsController < ApplicationController
 
     def reservation_confirmation
 
-      # @booking = Booking.find(params[:booking_id])
-
       if @booking.user_id == current_user.id
       render 'home/reservation_confirmation', notice: "Your Reservation have been Confirmed."
       else 
         redirect_back_or_to '/', allow_other_host: false, alert: "Your Request can't be process.."
       end 
+      
     end
 
     def cancellation
 
-      logger.info 'Cancellation action'
+      ActiveRecord::Base.transaction do
+         @booking.update_column( :status, 'Cancelled' )
+         BookingDate.where(booking_id: @booking.id).delete_all
+      end
 
+      redirect_to :action => 'show'
     end
 
     private
