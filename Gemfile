@@ -73,6 +73,7 @@ group :test do
 end
 
 gem "bootstrap"
+gem "sidekiq-scheduler"
 gem 'jquery-rails'
 gem "dotenv-rails"
 gem 'devise'
