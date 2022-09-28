@@ -15,17 +15,46 @@
             <span class="d-block mb-4"><span class="display-4 text-primary">₹<%= category.amount ? category.amount : 0 %></span> <span class="text-uppercase letter-spacing-2">/ per day</span> </span>
             <h2 class="mb-4"><%= category.name ? category.name : '' %></h2>
             <p><%= category.content ? category.content : '' %></p>
-            <p><a href="<%= (bookingButtonStatus == 0) ? '#book' : room_reservation_path(category)  %>" class="btn btn-primary text-white">Book Now</a><a class="featureViewClick btn btn-secondary mx-3">Check Deatails</a></p>
+            <p><a href="<%= (bookingButtonStatus == 0) ? '#book' : room_reservation_path(category)  %>" class="btn btn-primary text-white">Book Now</a><a class="featureViewClick btn btn-secondary mx-3">Check Details</a></p>
           </div>
         </div>
 
         <div class="bg-white featureDetails">
-          111111111111111 kjdcbjdcb <br> 
-          111111111111111 kjdcbjdcb <br>
-          111111111111111 kjdcbjdcb <br>
-          111111111111111 kjdcbjdcb <br>
-          111111111111111 kjdcbjdcb <br>
-          111111111111111 kjdcbjdcb <br>
+            <section class="section">
+            <div class="container">
+            <div class="row col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 featureBox justify-content-center text-center mx-3">
+                <h3 class="featureHeading text-primary mt-0 py-1">Included</h3><hr class="mt-0">
+                <% allowedFeatures = category.with_features %>
+                <% if allowedFeatures.count > 0 %>
+                    <% allowedFeatures.each do |feature| %>
+                       <p><%= feature.name %></p>
+                    <% end %>
+                  <% else %>
+                    <div class="justify-content-between">
+                        <h2> You didn't have any access to any features </h2>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-md-4 featureBox justify-content-center text-center mx-3">
+                <h3 class="featureHeading text-primary mt-0 py-1">Not Included</h3><hr class="mt-0">
+                <% restrictedFeatures = category.without_features %>
+                <% if restrictedFeatures.count > 0 %>
+                    <% restrictedFeatures.each do |feature| %>
+                        <p><%= feature.name %></p>
+                    <% end %>
+                  <% else %>
+                    <div class="justify-content-between">
+                        <h2> You didn't have any Restrictions to access </h2>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+            </section>
+          
         </div>
       </div>
       <% end %>
@@ -67,8 +96,10 @@ $(".featureViewClick").click(function(e) {
   let divElement = $(this).parents('div').closest('.featureDetailsParentDiv').find('.featureDetails');
     if(divElement.is(':hidden')){
         divElement.show();
+        $(this).text('Hide Details');
     } else {
         divElement.hide();
+        $(this).text('Check Details');
     }
 })
 

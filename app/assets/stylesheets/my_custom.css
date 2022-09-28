@@ -1421,3 +1421,14 @@ body {
           .text-grey{
             color: grey;
           }
+
+          .featureBox{
+            box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 20%);
+            padding: 10px 20px;
+            border-radius: 5px !important;
+          }
+        .featureHeading{
+          text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 20px 1px 0 0;
+        }

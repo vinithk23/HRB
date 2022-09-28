@@ -17,7 +17,6 @@ class HomeController < ApplicationController
   end
 
   def available_rooms
-    # pry("text!")
     logger.info "Asking Available Room Details..."
     $checkin_date = params[:checkin_date]
     $checkout_date = params[:checkout_date]
@@ -56,6 +55,7 @@ class HomeController < ApplicationController
       @booking_button_status = 1
     else 
       @available_categories = Category.all
+
       @booking_button_status = 0
     end
   end
