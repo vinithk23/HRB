@@ -73,11 +73,14 @@ group :test do
 end
 
 gem "bootstrap"
+gem "sidekiq"
 gem "sidekiq-scheduler"
+gem "sidekiq-cron"
 gem 'jquery-rails'
 gem "dotenv-rails"
 gem 'devise'
-
+gem 'redis', "~> 4.0"
+gem 'redis-namespace'
+gem 'rufus-scheduler'
 gem "jquery-datatables", "~> 1.10"
-
 gem "select2-rails", "~> 4.0"
