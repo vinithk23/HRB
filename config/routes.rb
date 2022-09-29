@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :features
   resources :categories
   resources :rooms
+  get 'dashboard', to: 'dashboard#index'
   post 'rooms/available', to: 'home#available_rooms', as: 'available_rooms'
   get 'reservation/:room_category', to: 'home#reservation', as: 'room_reservation'
   get 'booking/reservation_confirmation/:booking_id', to: 'bookings#reservation_confirmation', as: 'reservation_confirmation'

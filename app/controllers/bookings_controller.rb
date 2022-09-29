@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
 
       # GET /booking or /booking.json
       def index
-        @bookings = Booking.where(user_id: current_user.id)
+        @bookings = Booking.where(user_id: current_user.id).paginate(page: params[:page] , per_page: 10)
       end
      
       # GET /booking/all or /booking/all.json
@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
           redirect_back_or_to '/', allow_other_host: false, alert: "Your request can't be processed.."
           return
         end
-        @bookings = Booking.all
+        @bookings = Booking.paginate(page: params[:page] , per_page: 10)
         render 'index'
       end
 

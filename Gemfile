@@ -84,3 +84,5 @@ gem 'redis-namespace'
 gem 'rufus-scheduler'
 gem "jquery-datatables", "~> 1.10"
 gem "select2-rails", "~> 4.0"
+gem 'will_paginate', '~> 3.3'
+gem 'will_paginate-bootstrap-style'

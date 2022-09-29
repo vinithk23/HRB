@@ -1,34 +1,3 @@
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <%= link_to 'Friend App', root_path, class:"navbar-brand" %>
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item">
-        <%= link_to "About Us", root_path, class:"nav-link" %>
-      </li>
-      
-        <li class="nav-item">
-          <%= link_to "Sign Up", root_path, class:"nav-link" %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to "Sign In", root_path, class:"nav-link" %>
-        </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
--->
-
-
 <!--strat section -->
   <section class="site-hero overlay" style="background-image: url(../images/hero_4.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
@@ -78,14 +47,14 @@
                       <label for="adults" class="font-weight-bold text-black">Adults</label>
                       <div class="field-icon-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-        <%= form.select :adult_count, options_for_select([1,2,3,4], :selected => ($adult_count != 0) ? $adult_count : 1), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'adult_count'} %>
+                            <%= form.select :adult_count, options_for_select([1,2,3,4], :selected => ($adult_count != 0) ? $adult_count : 1), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'adult_count'} %>
                       </div>
                     </div>
                     <div class="col-md-6 mb-3 mb-md-0">
                       <label for="children" class="font-weight-bold text-black">Children</label>
                       <div class="field-icon-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-        <%= form.select :child_count, options_for_select([0,1,2,3,4], :selected => $child_count != 0 ? $child_count : 0 ), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'children_count'} %>
+                            <%= form.select :child_count, options_for_select([0,1,2,3,4], :selected => $child_count != 0 ? $child_count : 0 ), {}, { required: 'true', autofocus: 'true', class: 'form-control', id: 'children_count'} %>
                       </div>
                     </div>
                   </div>

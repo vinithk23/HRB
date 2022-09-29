@@ -1,7 +1,7 @@
 <h1>Room</h1>
 <%= link_to "New room", new_room_path, class: 'btn btn-md btn-primary align-right' %>
 
-<% if @room.count > 0 %>
+<% if @rooms.count > 0 %>
 <div class="table-responsive">
   <table class="table table-striped" id="roomTable">
     <thead>
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <% rowCol = 1 %>
-      <% @room.each_with_index do |room, index| %>
+      <% @rooms.each_with_index do |room, index| %>
       <tr>
         <th scope="row"><%= index + 1 %></th>
         <% rowCol+1 %>
@@ -31,3 +31,4 @@
 <% else %>
 <h3 class="mt-2">No Data Found</h3>
 <% end %>
+<%= will_paginate @rooms %>

@@ -4,7 +4,7 @@ class FeaturesController < ApplicationController
 
   # GET /features or /features.json
   def index
-    @features = Feature.all
+    @features = Feature.paginate(page: params[:page] , per_page: 10)
   end
 
   # GET /features/1 or /features/1.json
