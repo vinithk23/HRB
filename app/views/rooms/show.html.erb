@@ -1,7 +1,13 @@
 <%= render 'rooms/room', room: @room %>
 
 <div class="mb-3">
-  <%= link_to "Edit this room", edit_room_path(@room), class: 'btn btn-warning' %> |
+  <% if (@room.checkUpComingBookedStatus > 0) %>
+    <%= render 'editRestrictModel' %>
+    <button type="button" class="btn btn-warning" id="editRestrictModelOpenbutton" data-toggle="modal" data-target="#editRestrictModel">Edit</button>
+  <% else %>
+    <%= link_to "Edit this room", edit_room_path(@room), class: 'btn btn-warning' %>
+  <% end %>
+  |
   <%= link_to "Back to room", rooms_path, class: 'btn btn-secondary' %>
 
   <%= button_to "Destroy this room", @room, method: :delete, class: 'btn btn-danger mt-2' %>

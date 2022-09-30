@@ -28,14 +28,14 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params)
         
         # availableRoomIds = Room.where.not(status: 'Blocked').where.not(id: BookingDate.where(date: $checkin_date..$checkout_date).select(:room_id).distinct.pluck('room_id')).select(:category_id).distinct.pluck('category_id')
-        availableRoomIds = Room.where.not(status: 'Blocked').where.not(id: BookingDate.where(date: $checkin_date..$checkout_date).select(:room_id).distinct.pluck('room_id')).where(category_id: $room_category).pluck('id')
+        availableRoomIds = Room.where.not(status: 'Blocked').where.not(id: BookingDate.where(date: (Date.parse($checkin_date)..Date.parse($checkout_date))).select(:room_id).distinct.pluck('room_id')).where(category_id: $room_category).pluck('id')
 
         @booking.user_id = current_user.id
         @booking.room_id = availableRoomIds.first    
         @booking.save
      
         if @booking.persisted?
-              ($checkin_date..$checkout_date).each do |date|
+              (Date.parse($checkin_date)..Date.parse($checkout_date)).each do |date|
                   BookingDate.create!(room_id: @booking.room_id, booking_id: @booking.id, date: date)
               end
             redirect_to reservation_confirmation_path(@booking)

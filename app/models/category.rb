@@ -10,16 +10,10 @@ class Category < ApplicationRecord
     #     with: %r{\.gif|jpg|png}i,
     #     message: 'must be a url for gif, jpg, or png image.'
     #   }
+    
     def feature_ids_is_array
         errors.add(:feature_ids, "must be an array") unless feature_ids.kind_of?(Array)
     end
-
-    # def self.with_features
-    #     logger.info '------------- with_features ---------------'
-    #     logger.info self.ids
-    #     logger.info '------------- with_features ---------------'
-    #     whereself.where()
-    # end
 
     def with_features
         Feature.where(id: self.feature_ids)

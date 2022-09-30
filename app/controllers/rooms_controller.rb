@@ -5,7 +5,8 @@ class RoomsController < ApplicationController
 
     # GET /room or /room.json
     def index
-      @rooms = Room.includes(:category).paginate(page: params[:page] , per_page: 10)
+      # @rooms = Room.includes(:category).paginate(page: params[:page], per_page: 10)
+      @rooms = Room.includes(:category).paginate(page: params[:page], per_page: 10)
     end
   
     # GET /room/1 or /room/1.json
@@ -63,15 +64,6 @@ class RoomsController < ApplicationController
       # Use callbacks to share common setup or constraints between actions.
       def set_room
         @room = Room.includes(:category).find(params[:id])
-      end
-
-      def checkBookedStatus
-
-        10.times { 
-            logger.info "Processing the room update request..."
-        }
-        
-
       end
   
       # Only allow a list of trusted parameters through.

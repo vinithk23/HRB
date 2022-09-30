@@ -22,7 +22,7 @@
         <td><%= room.room_no %></td>
         <td><%= (room.category ? room.category.name : '-') %></td>
         <td><%= room.status %></td>
-        <td class="d-flex"><%= link_to "Show", room_path(room), class: 'btn btn-success' %>&nbsp;<%= link_to "Edit", edit_room_path(room), class: 'btn btn-warning' %>&nbsp;<%= button_to "Destroy", room, method: :delete, class: 'btn btn-danger' %></td>
+        <td class="d-flex"><%= link_to "Show", room_path(room), class: 'btn btn-success' %>&nbsp;<% if (room.checkUpComingBookedStatus > 0) %><button type="button" class="btn btn-warning" id="editRestrictModelOpenbutton" data-toggle="modal" data-target="#editRestrictModel">Edit</button><% else %><%= link_to "Edit", edit_room_path(room), class: 'btn btn-warning' %><% end %>&nbsp;<%= button_to "Destroy", room, method: :delete, class: 'btn btn-danger' %></td>
       </tr>
       <% end %>
     </tbody>
@@ -32,3 +32,5 @@
 <h3 class="mt-2">No Data Found</h3>
 <% end %>
 <%= will_paginate @rooms %>
+
+<%= render 'editRestrictModel' %>
