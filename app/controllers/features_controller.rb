@@ -26,7 +26,7 @@ class FeaturesController < ApplicationController
 
     respond_to do |format|
       if @feature.save
-        format.html { redirect_to feature_url(@feature), notice: "Feature was successfully created." }
+        format.html { redirect_to feature_path(@feature), notice: "Feature was successfully created." }
         format.json { render :show, status: :created, location: @feature }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class FeaturesController < ApplicationController
   def update
     respond_to do |format|
       if @feature.update(feature_params)
-        format.html { redirect_to feature_url(@feature), notice: "Feature was successfully updated." }
+        format.html { redirect_to feature_path(@feature), notice: "Feature was successfully updated." }
         format.json { render :show, status: :ok, location: @feature }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class FeaturesController < ApplicationController
     @feature.destroy
 
     respond_to do |format|
-      format.html { redirect_to features_url, notice: "Feature was successfully destroyed." }
+      format.html { redirect_to features_path, notice: "Feature was successfully destroyed." }
       format.json { head :no_content }
     end
   end
