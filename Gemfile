@@ -72,6 +72,7 @@ group :test do
   gem "webdrivers"
 end
 
+gem "solargraph"
 gem "bootstrap"
 gem "sidekiq"
 gem "sidekiq-scheduler"

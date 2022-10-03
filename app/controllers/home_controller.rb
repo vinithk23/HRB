@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: %i[ reservation ]
+
   $room_category = ""
   $checkin_date = ""
   $checkout_date = ""
@@ -40,7 +42,6 @@ class HomeController < ApplicationController
   def set_room_details 
     if $adult_count != 0
       @available_category_ids = Room.where.not(status: 'Blocked').where.not(id: BookingDate.where(date: $checkin_date..$checkout_date).select(:room_id).distinct.pluck('room_id')).select(:category_id).distinct.pluck('category_id')
-      # @available_category_ids = Room.where(status: 'Available').pluck('category_id').uniq
       @available_categories = Category.where(id: @available_category_ids)
       @booking_button_status = 1
     else 

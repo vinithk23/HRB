@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   # put 'category/:id', to: 'category#update'
   # patch 'category/:id', to: 'category#update'
   # delete 'category/:id', to: 'category#destroy'
-  # get 'category' as 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

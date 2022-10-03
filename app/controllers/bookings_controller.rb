@@ -47,6 +47,7 @@ class BookingsController < ApplicationController
     def reservation_confirmation
 
       if @booking.user_id == current_user.id
+        ReservationMailer.send_reservation_confirmation_email(@booking, current_user).deliver_now
       render 'home/reservation_confirmation', notice: "Your Reservation have been Confirmed."
       else 
         redirect_back_or_to '/', allow_other_host: false, alert: "Your Request can't be process.."
