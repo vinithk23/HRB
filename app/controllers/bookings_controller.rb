@@ -61,6 +61,9 @@ class BookingsController < ApplicationController
       ActiveRecord::Base.transaction do
          @booking.update_column( :status, 'Cancelled' )
         #  self.send_reservation_mail
+            logger.info '--------@bookingkelcn-----------'
+      logger.info Rails.application.credentials.dig(:sendgrid, :api_key)
+      logger.info '--------@booking-----------'
         ReservationMailer.send_reservation_email(@booking, current_user).deliver_now
          BookingDate.where(booking_id: @booking.id).delete_all
       end
