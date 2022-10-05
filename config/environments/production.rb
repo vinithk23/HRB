@@ -2,8 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   
-  config.hosts << "enigmatic-ocean-51639.herokuapp.com"
-  Rails.application.routes.default_url_options[:host] = 'enigmatic-ocean-51639.herokuapp.com'
+  config.hosts << "hrbrails.herokuapp.com"
+  Rails.application.routes.default_url_options[:host] = 'hrbrails.herokuapp.com'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -71,7 +71,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.default_url_options = { protocol: "http", host: 'enigmatic-ocean-51639.herokuapp.com' }
+  config.action_mailer.default_url_options = { protocol: "http", host: 'hrbrails.herokuapp.com' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
