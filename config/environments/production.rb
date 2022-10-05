@@ -65,8 +65,13 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "HRB_production"
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.default_url_options = { protocol: "http", host: 'enigmatic-ocean-51639.herokuapp.com', port:  ENV['LOCAL_WEB_PORT']  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
