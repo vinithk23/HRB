@@ -42,10 +42,10 @@ class HomeController < ApplicationController
   def set_room_details 
     if $adult_count != 0
       @available_category_ids = Room.where.not(status: 'Blocked').where.not(id: BookingDate.where(date: $checkin_date..$checkout_date).select(:room_id).distinct.pluck('room_id')).select(:category_id).distinct.pluck('category_id')
-      @available_categories = Category.where(id: @available_category_ids)
+      @available_categories = Category.where(id: @available_category_ids).order(:amount)
       @booking_button_status = 1
     else 
-      @available_categories = Category.all
+      @available_categories = Category.order(:amount)
       @booking_button_status = 0
     end
   end
