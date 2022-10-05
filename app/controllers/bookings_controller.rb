@@ -47,7 +47,8 @@ class BookingsController < ApplicationController
     def reservation_confirmation
 
       if @booking.user_id == current_user.id
-        ReservationMailer.send_reservation_confirmation_email(@booking, current_user).deliver_now
+        # self.send_reservation_mail
+        ReservationMailer.send_reservation_email(@booking, current_user).deliver_now
       render 'home/reservation_confirmation', notice: "Your Reservation have been Confirmed."
       else 
         redirect_back_or_to '/', allow_other_host: false, alert: "Your Request can't be process.."
@@ -59,11 +60,20 @@ class BookingsController < ApplicationController
 
       ActiveRecord::Base.transaction do
          @booking.update_column( :status, 'Cancelled' )
+        #  self.send_reservation_mail
+        ReservationMailer.send_reservation_email(@booking, current_user).deliver_now
          BookingDate.where(booking_id: @booking.id).delete_all
       end
 
       redirect_to :action => 'show'
     end
+
+  #   def send_reservation_mail
+  #     logger.info '--------@bookingkelcn-----------'
+  #     logger.info self
+  #     logger.info '--------@booking-----------'
+  #     ReservationMailer.send_reservation_email(@booking, current_user).deliver_now
+  # end
 
     private
     # Use callbacks to share common setup or constraints between actions.
