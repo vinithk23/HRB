@@ -3,6 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   
   config.hosts << "enigmatic-ocean-51639.herokuapp.com"
+  Rails.application.routes.default_url_options[:host] = 'enigmatic-ocean-51639.herokuapp.com'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
