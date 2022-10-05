@@ -10,7 +10,7 @@
       <% categories.each_with_index do |category, index| %>
       <div class="featureDetailsParentDiv">
         <div class="site-block-half d-block d-lg-flex bg-white">
-          <a href="#" class="image d-block bg-image-2 <%= index.odd? ? 'order-2' : '' %>" style="background-image: url('<%= rails_blob_url(category.image) %>');"></a>
+          <a href="#" class="image d-block bg-image-2 <%= index.odd? ? 'order-2' : '' %>" style="background-image: url('<%= (category.image.present?) ? rails_blob_url(category.image) :  "" %>');"></a>
           <div class="text">
             <span class="d-block mb-4"><span class="display-4 text-primary">₹<%= category.amount ? category.amount : 0 %></span> <span class="text-uppercase letter-spacing-2">/ per day</span> </span>
             <h2 class="mb-4"><%= category.name ? category.name : '' %></h2>
