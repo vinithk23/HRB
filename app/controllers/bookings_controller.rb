@@ -69,7 +69,7 @@ class BookingsController < ApplicationController
     end
 
     def send_reservation_mail
-      ReservationMailer.send_reservation_email(@booking, current_user).deliver_now
+      ReservationMailer.send_reservation_email(@booking, current_user).deliver_later
     end
 
     private
