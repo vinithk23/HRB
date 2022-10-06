@@ -72,6 +72,7 @@ group :test do
   gem "webdrivers"
 end
 
+gem 'aws-sdk-s3', '~> 1.114'
 gem "solargraph"
 gem "bootstrap"
 gem "sidekiq"
