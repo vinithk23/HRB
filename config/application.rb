@@ -12,6 +12,7 @@ module HRB
     config.load_defaults 7.0
     config.assets.initialize_on_precompile = false
     config.active_job.queue_adapter = :sidekiq
+    Rails.application.config.hosts << "hrb.fly.dev"
 
     # Configuration for the application, engines, and railties goes here.
     #

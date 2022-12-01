@@ -2,8 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
-  config.hosts << "hrbrails.herokuapp.com"
-  Rails.application.routes.default_url_options[:host] = 'hrbrails.herokuapp.com'
+  config.hosts << "hrb.fly.dev"
+  Rails.application.routes.default_url_options[:host] = 'hrb.fly.dev'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
