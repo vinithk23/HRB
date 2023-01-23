@@ -1,4 +1,4 @@
 CompletedBookingStatusUpdateJob:
-    cron: '1 0 * * * Asia/Kolkata'
+    cron: '1 0 * * * * Asia/Kolkata'
     enabled: true
     class: CompletedBookingStatusUpdateJob
